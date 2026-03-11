@@ -4,6 +4,7 @@ test/
 jobs/
 .gemBS
 .cache
+scratch/
 results*/
 .parallel
 .snakemake

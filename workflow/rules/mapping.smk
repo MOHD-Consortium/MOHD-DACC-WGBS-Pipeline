@@ -73,8 +73,13 @@ rule merge:
 
         samtools merge \
             -@ {resources.threads} \
-            {output.bam} \
-            {input.bams} 
+            -o - \
+            {input.bams} | \
+        samtools sort \
+            -@ {resources.threads} \
+            --write-index \
+            -T /tmp/{wildcards.barcode} \
+            -o {output.bam} - 
 
         echo "$(date): Rule finished"
         """
